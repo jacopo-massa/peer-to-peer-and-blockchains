@@ -96,7 +96,7 @@ contract BoxIncomplete {
 
         uint penalty = penalty_function.compute_penalty(samples_temperature, samples_bump, temperature_threshold, bump_threshold);
 
-        if((transporter_price - penalty) < minimal_price) {
+        if((transporter_price < penalty) || (transporter_price - penalty) < minimal_price) {
             // The penalty overcomes the difference between initial and minimal price
             
             (bool success, ) = receiver.call.value(amount)("");
@@ -113,15 +113,12 @@ contract BoxIncomplete {
             (bool success, ) = transporter.call.value(to_pay)("");
             require(success == true, "Error while paying the transporter");
 
-            // Refund the receiver, if necessary
-            if(penalty > 0) {
-                (bool success, ) = receiver.call.value(penalty)("");
-                require(success == true, "Error while refunding the receiver");
-            }
-
             state = State.RECEIVED;
             emit received(to_pay);
         }
+
+        // Refund the receiver, and destroy the contract
+        selfdestruct(msg.sender);
     }
 
     /// @notice Push sensed data samples to the contract. Only the transporter can push such data
