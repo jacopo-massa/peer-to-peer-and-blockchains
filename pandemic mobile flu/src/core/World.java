@@ -262,7 +262,7 @@ public class World {
 				double iProb = SimScenario.sirProbabilities.get(SirStatus.INFECTIOUS);
 				if(randomNumber > sProb + iProb && !h.isRecovered()) {
 					h.patchNode();
-					System.out.println("PATCHATO" + h.toString());
+					h.setSirStatus(SirStatus.REMOVED);
 					try {
 						SimScenario.bw.write(h.toString() + "," + SimClock.getIntTime() + "\n");
 					}catch(IOException e) {

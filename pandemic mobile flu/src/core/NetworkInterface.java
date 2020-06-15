@@ -412,10 +412,12 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
 		for (ConnectionListener cl : this.cListeners) {
 			switch (type) {
 			case CON_UP:
-				if(this.host.isInfected() && otherHost.isSusceptible() && this.host.getOS().equals(otherHost.getOS())) {
+				if(this.host.isInfected() && otherHost.isSusceptible()
+						&& this.host.getOS().equals(otherHost.getOS())) {
 					double randomNumber = rng.nextDouble();
 					if(randomNumber < SimScenario.sirProbabilities.get(SirStatus.INFECTIOUS)) {
 						otherHost.infectNode();
+						otherHost.setSirStatus(SirStatus.INFECTIOUS);
 						try {
 							SimScenario.bw.write(this.host.toString() + ","
 									+ otherHost.toString() + ","

@@ -6,8 +6,8 @@
 Scenario.name = Pandemic Mobile Flu
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
-# 43200s == 12h
-Scenario.endTime = 43200
+# 43200s == 12h || 172800 == 2d
+Scenario.endTime = 172800
 
 ## Operating Systems settings
 # Probabilities for each defined OS in enum 'OperatingSystem'
@@ -16,19 +16,19 @@ OperatingSystem.IOS = 0.3
 OperatingSystem.WINDOWS_PHONE = 0.2
 
 ## Hotspots settings
-Hotspot.nrofHS = 5
+Hotspot.nrofHS = 6
 
 ## HTL Model settings
 # Probabilities for each possible status
-HTE.HALTING = 0.1
-HTE.TRAVELLING = 0.1
-HTE.EXPLORING = 0.8
+HTE.HALTING = 0.2
+HTE.TRAVELLING = 0.2
+HTE.EXPLORING = 0.6
 
 ## SIR Model settings
 # Probabilities for each possible status
-SIR.SUSCEPTIBLE = 0.595
-SIR.INFECTIOUS = 0.4
-SIR.RECOVERED = 0.005
+SIR.SUSCEPTIBLE = 0.15
+SIR.INFECTIOUS = 0.8
+SIR.REMOVED = 0.05
 SIR.patchTime = 1000
 
 ## Interface-specific settings:
@@ -80,7 +80,7 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 Group.msgTtl = 300
 
-Group.nrofHosts = 100
+Group.nrofHosts = 200
 
 # group1 specific settings
 Group1.groupID = n
@@ -93,9 +93,9 @@ Events.nrof = 0
 
 ## Movement model settings
 # seed for movement models' pseudo random number generator (default = 0)
-MovementModel.rngSeed = 25
+MovementModel.rngSeed = 20
 # World's size for Movement Models without implicit size (width, height; meters)
-MovementModel.worldSize = 9000, 6800
+MovementModel.worldSize = 10000, 6800
 # How long time to move hosts in the world before real simulation
 MovementModel.warmup = 1000
 

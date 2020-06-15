@@ -5,3 +5,4 @@ public enum HTEStatus {
     TRAVELLING,
     EXPLORING
 }
+

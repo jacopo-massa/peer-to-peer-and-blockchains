@@ -397,11 +397,11 @@ public class DTNHost implements Comparable<DTNHost> {
 
 	public void patchNode() {
 
-		this.sirStatus = SirStatus.RECOVERED;
+		this.sirStatus = SirStatus.REMOVED;
 	}
 
-	public SirStatus getSirStatus() {
-		return this.sirStatus;
+	public void setSirStatus(SirStatus status) {
+		this.sirStatus = status;
 	}
 
 	public boolean isInfected() {
@@ -409,7 +409,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	public boolean isRecovered() {
-		return this.sirStatus.equals(SirStatus.RECOVERED);
+		return this.sirStatus.equals(SirStatus.REMOVED);
 	}
 
 	public boolean isSusceptible() {
@@ -435,7 +435,8 @@ public class DTNHost implements Comparable<DTNHost> {
 		if (this.destination == null) {
 			// EXPLORING
 			if(!isExploring()) {
-				if (randomNumber > hteProbabilities.get(HTEStatus.HALTING) + hteProbabilities.get(HTEStatus.TRAVELLING)) {
+				if (randomNumber > hteProbabilities.get(HTEStatus.HALTING) +
+						hteProbabilities.get(HTEStatus.TRAVELLING)) {
 					Coord closePoint = exploreCoord();
 					this.hteStatus = HTEStatus.EXPLORING;
 					this.destination = closePoint;
@@ -480,6 +481,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	private Coord exploreCoord() {
+		// 'movement' contains the map measures.
 		double x = random.nextInt(50) + this.location.getX();
 		if(x > this.movement.getMaxX())
 			x = this.movement.getMaxX();

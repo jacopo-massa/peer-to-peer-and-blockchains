@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * simulation area, among random-generated hotsposts.
  */
 public class RandomHotspot extends MovementModel {
+
 	/** how many waypoints should there be per path */
 	private static final int PATH_LENGTH = 1;
 	/** Hotspost namespace */
