@@ -14,7 +14,7 @@ idna==2.9
 ipfshttpclient==0.4.12
 ipstack==0.1.4
 itsdangerous==1.1.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 morphys==1.0
 multiaddr==0.0.9
